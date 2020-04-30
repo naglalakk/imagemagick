@@ -1,5 +1,5 @@
 Name:                imagemagick
-Version:             0.0.4.2
+Version:             0.0.5.0
 Synopsis:            bindings to imagemagick library
 License:             OtherLicense
 License-file:        LICENSE
@@ -74,14 +74,13 @@ Library
                       , Graphics.ImageMagick.MagickWand.FFI.Types
                       , Graphics.ImageMagick.MagickWand.FFI.WandImage
                       , Graphics.ImageMagick.MagickWand.FFI.WandProperties
-  build-depends:       base >= 4.0 && <5.0
+  build-depends:       base >=4.9 && <5.0
                       , resourcet >= 0.3 && <1.3
                       , transformers >= 0.3 && < 0.6
                       , vector >= 0.9 && < 0.13
                       , bytestring >= 0.9 && <0.12
                       , text >= 0.11 && <1.3
                       , filepath >= 1.0 && < 2.0
- --                    , MonadCatchIO-transformers == 0.3.*
   extensions:         EmptyDataDecls
   Ghc-options:        -Wall
   if os(darwin)
@@ -94,7 +93,7 @@ Library
 executable            resize
   If flag(buildExamples)
     Buildable:        True
-    build-depends:      base >= 4.0 && <5.0
+    build-depends:      base >= 4.9 && <5.0
                       , resourcet
                       , transformers
                       , vector
@@ -113,7 +112,7 @@ executable            resize
 executable            extent
   If flag(buildExamples)
     Buildable:        True
-    build-depends:      base >= 4.0 && <5.0
+    build-depends:      base >= 4.9 && <5.0
                       , resourcet
                       , transformers
                       , vector
@@ -132,7 +131,7 @@ executable            extent
 executable            floodfill
   If flag(buildExamples)
     Buildable:        True
-    build-depends:      base >= 4.0 && <5.0
+    build-depends:      base >= 4.9 && <5.0
                       , resourcet
                       , transformers
                       , vector
@@ -152,7 +151,7 @@ executable            cyclops
   Main-is:            examples/cyclops.hs
   If flag(buildExamples)
     Buildable:        True
-    build-depends:      base >= 4.0 && <5.0
+    build-depends:      base >= 4.9 && <5.0
                       , resourcet
                       , transformers
                       , vector
@@ -171,7 +170,7 @@ executable            clipmask
   Main-is:            examples/clipmask.hs
   If flag(buildExamples)
     Buildable:        True
-    build-depends:      base >= 4.0 && <5.0
+    build-depends:      base >= 4.9 && <5.0
                       , resourcet
                       , transformers
                       , vector
@@ -189,7 +188,7 @@ executable            clipmask
 executable            paint-trans
   If flag(buildExamples)
     Buildable:        True
-    build-depends:      base >= 4.0 && <5.0
+    build-depends:      base >= 4.9 && <5.0
                       , resourcet
                       , transformers
                       , vector
@@ -209,7 +208,7 @@ executable            round-mask
   Main-is:            examples/round_mask.hs
   If flag(buildExamples)
     Buildable:        True
-    build-depends:      base >= 4.0 && <5.0
+    build-depends:      base >= 4.9 && <5.0
                       , resourcet
                       , transformers
                       , vector
@@ -228,7 +227,7 @@ executable            make-tile
   Main-is:            examples/make_tile.hs
   If flag(buildExamples)
     Buildable:        True
-    build-depends:      base >= 4.0 && <5.0
+    build-depends:      base >= 4.9 && <5.0
                       , resourcet
                       , transformers
                       , vector
@@ -246,7 +245,7 @@ executable            draw-shapes
   Main-is:            examples/draw_shapes.hs
   If flag(buildExamples)
     Buildable:        True
-    build-depends:      base >= 4.0 && <5.0
+    build-depends:      base >= 4.9 && <5.0
                       , resourcet
                       , transformers
                       , vector
@@ -265,7 +264,7 @@ executable            text-effects
   Main-is:            examples/text_effects.hs
   If flag(buildExamples)
     Buildable:        True
-    build-depends:      base >= 4.0 && <5.0
+    build-depends:      base >= 4.9 && <5.0
                       , resourcet
                       , transformers
                       , vector
@@ -284,7 +283,7 @@ executable            gel
   Main-is:            examples/gel.hs
   If flag(buildExamples)
     Buildable:        True
-    build-depends:      base >= 4.0 && <5.0
+    build-depends:      base >= 4.9 && <5.0
                       , resourcet
                       , transformers
                       , vector
@@ -303,7 +302,7 @@ executable            reflect
   Main-is:            examples/reflect.hs
   If flag(buildExamples)
     Buildable:        True
-    build-depends:      base >= 4.0 && <5.0
+    build-depends:      base >= 4.9 && <5.0
                       , resourcet
                       , transformers
                       , vector
@@ -322,7 +321,7 @@ executable            3dlogo
   Main-is:            examples/3dlogo.hs
   If flag(buildExamples)
     Buildable:        True
-    build-depends:      base >= 4.0 && <5.0
+    build-depends:      base >= 4.9 && <5.0
                       , resourcet
                       , transformers
                       , vector
@@ -341,7 +340,7 @@ executable            affine
   Main-is:            examples/affine.hs
   If flag(buildExamples)
     Buildable:        True
-    build-depends:      base >= 4.0 && <5.0
+    build-depends:      base >= 4.9 && <5.0
                       , resourcet
                       , transformers
                       , vector
@@ -360,7 +359,7 @@ executable            grayscale
   Main-is:            examples/grayscale.hs
   If flag(buildExamples)
     Buildable:        True
-    build-depends:      base >= 4.0 && <5.0
+    build-depends:      base >= 4.9 && <5.0
                       , resourcet
                       , transformers
                       , vector
@@ -379,7 +378,7 @@ executable            modulate
   Main-is:            examples/modulate.hs
   If flag(buildExamples)
     Buildable:        True
-    build-depends:      base >= 4.0 && <5.0
+    build-depends:      base >= 4.9 && <5.0
                       , resourcet
                       , transformers
                       , vector
@@ -399,7 +398,7 @@ executable            landscape3d
   Main-is:            examples/landscape_3d.hs
   If flag(buildExamples)
     Buildable:        True
-    build-depends:      base >= 4.0 && <5.0
+    build-depends:      base >= 4.9 && <5.0
                       , resourcet
                       , transformers
                       , vector
@@ -418,7 +417,7 @@ executable            tilt-shift
   Main-is:            examples/tilt_shift.hs
   If flag(buildExamples)
     Buildable:        True
-    build-depends:      base >= 4.0 && <5.0
+    build-depends:      base >= 4.9 && <5.0
                       , resourcet
                       , transformers
                       , vector
@@ -437,7 +436,7 @@ executable            bunny
   Main-is:            examples/bunny.hs
   If flag(buildExamples)
     Buildable:        True
-    build-depends:      base >= 4.0 && <5.0
+    build-depends:      base >= 4.9 && <5.0
                       , resourcet
                       , transformers
                       , vector
@@ -456,7 +455,7 @@ executable            pixel-mod
   Main-is:            examples/pixel_mod.hs
   If flag(buildExamples)
     Buildable:        True
-    build-depends:      base >= 4.0 && <5.0
+    build-depends:      base >= 4.9 && <5.0
                       , resourcet
                       , transformers
                       , vector
@@ -475,7 +474,7 @@ executable            wandtest
   Main-is:            examples/wandtest.hs
   If flag(buildExamples)
     Buildable:        True
-    build-depends:      base >= 4.0 && <5.0
+    build-depends:      base >= 4.9 && <5.0
                       , resourcet
                       , transformers
                       , vector
@@ -493,7 +492,7 @@ executable            wandtest
 test-suite           image-tests
   type:              exitcode-stdio-1.0
   main-is:           test/ImageTest.hs
-  build-depends:       base >= 4.0 && <5.0
+  build-depends:       base >= 4.9 && <5.0
                      , lifted-base
                      , directory
                      , resourcet
