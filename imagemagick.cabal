@@ -1,5 +1,5 @@
 Name:                imagemagick
-Version:             0.0.5.0
+Version:             0.0.5.1
 Synopsis:            bindings to imagemagick library
 License:             OtherLicense
 License-file:        LICENSE
@@ -513,4 +513,4 @@ test-suite           image-tests
 
 source-repository head
   type:     git
-  location: git://github.com/qnikst/imagemagick.git
+  location: git://github.com/naglalakk/imagemagick.git
