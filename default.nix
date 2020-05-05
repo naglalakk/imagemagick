@@ -4,7 +4,7 @@
 }:
 mkDerivation {
   pname = "imagemagick";
-  version = "0.0.6.0";
+  version = "0.0.6.1";
   src = ./.;
   doCheck = false;
   isLibrary = true;

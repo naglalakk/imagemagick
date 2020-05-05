@@ -4,10 +4,10 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 4247d7d212a3a6f7eea32306335577e6d743679bce58643587d486b78411ec88
+-- hash: 1c6979c9d9f29b093b87d3817d8ee9e8af8453c6616be3a768677358efc5ae41
 
 name:                imagemagick
-version:             0.0.6.0
+version:             0.0.6.1
 synopsis:            bindings to imagemagick library
 description:         Basic image magick bindings.
 category:            Graphics
@@ -97,7 +97,13 @@ library
       Paths_imagemagick
   hs-source-dirs:
       src
+  default-extensions: EmptyDataDecls
   ghc-options: -Wall
+  pkgconfig-depends:
+      ImageMagick
+    , MagickWand >= 6.7
+  build-tools:
+      hsc2hs
   build-depends:
       base >=4.9 && <5.0
     , bytestring >=0.9 && <0.12
