@@ -1,516 +1,536 @@
-Name:                imagemagick
-Version:             0.0.5.1
-Synopsis:            bindings to imagemagick library
-License:             OtherLicense
-License-file:        LICENSE
-Author:              Alexander Vershilov, Kirill Zaborsky
-Maintainer:          alexander.vershilov@gmail.com
--- Copyright:
-Category:            Graphics
-Build-type:          Simple
-Cabal-version:       >=1.8
-Description:         Basic image magick bindings.
+cabal-version: 1.12
 
-extra-source-files:  data/*.jpg
-                     data/*.png
-                     data/*.gif
-                     data/*.ico
+-- This file has been generated from package.yaml by hpack version 0.32.0.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 4247d7d212a3a6f7eea32306335577e6d743679bce58643587d486b78411ec88
 
-Flag buildExamples
-  description:       Build examples
-  default:           False
-
-Library
-  hs-source-dirs:    src
-  Exposed-modules:      Graphics.ImageMagick.MagickCore
-                      , Graphics.ImageMagick.MagickCore.FFI.Gem
-                      , Graphics.ImageMagick.MagickCore.FFI.Log
-                      , Graphics.ImageMagick.MagickCore.FFI.Mime
-                      , Graphics.ImageMagick.MagickCore.FFI.Option
-                      , Graphics.ImageMagick.MagickCore.FFI.Quantize
-                      , Graphics.ImageMagick.MagickCore.Types.FFI.CacheView
-                      , Graphics.ImageMagick.MagickCore.Types.FFI.Composite
-                      , Graphics.ImageMagick.MagickCore.Types.FFI.Compress
-                      , Graphics.ImageMagick.MagickCore.Types.FFI.Constitute
-                      , Graphics.ImageMagick.MagickCore.Types.FFI.Distort
-                      , Graphics.ImageMagick.MagickCore.Types.FFI.DitherMethod
-                      , Graphics.ImageMagick.MagickCore.Types.FFI.Exception
-                      , Graphics.ImageMagick.MagickCore.Types.FFI.Fx
-                      , Graphics.ImageMagick.MagickCore.Types.FFI.Geometry
-                      , Graphics.ImageMagick.MagickCore.Types.FFI.Image
-                      , Graphics.ImageMagick.MagickCore.Types.FFI.Layer
-                      , Graphics.ImageMagick.MagickCore.Types.FFI.Log
-                      , Graphics.ImageMagick.MagickCore.Types.FFI.PaintMethod
-                      , Graphics.ImageMagick.MagickCore.Types.FFI.PixelPacket
-                      , Graphics.ImageMagick.MagickCore.Types.FFI.Quantize
-                      , Graphics.ImageMagick.MagickCore.Types.FFI.Statistic
-                      , Graphics.ImageMagick.MagickCore.Types.FFI.Types
-                      , Graphics.ImageMagick.MagickCore.Types.FFI.ChannelType
-                      , Graphics.ImageMagick.MagickCore.Types.FFI.MagickFunction
-                      , Graphics.ImageMagick.MagickCore.Types.FFI.FilterTypes
-                      , Graphics.ImageMagick.MagickCore.Types.FFI.AlphaChannelType
-                      , Graphics.ImageMagick.MagickCore.Types.FFI.ColorspaceType
-                      , Graphics.ImageMagick.MagickCore.Types.MBits
-                      , Graphics.ImageMagick.MagickCore.Types
-                      , Graphics.ImageMagick.MagickCore.Option
-                      , Graphics.ImageMagick.MagickCore.Mime
-                      , Graphics.ImageMagick.MagickCore.Exception
-                      , Graphics.ImageMagick.MagickCore.Gem
-                      , Graphics.ImageMagick.MagickCore.Quantize
-                      , Graphics.ImageMagick.MagickWand
-                      , Graphics.ImageMagick.MagickWand.WandImage
-                      , Graphics.ImageMagick.MagickWand.Types
-                      , Graphics.ImageMagick.MagickWand.PixelWand
-                      , Graphics.ImageMagick.MagickWand.PixelPacket
-                      , Graphics.ImageMagick.MagickWand.PixelIterator
-                      , Graphics.ImageMagick.MagickWand.MagickWand
-                      , Graphics.ImageMagick.MagickWand.DrawingWand
-                      , Graphics.ImageMagick.MagickWand.Utils
-                      , Graphics.ImageMagick.MagickWand.FFI.ImageDrawing
-                      , Graphics.ImageMagick.MagickWand.FFI.DrawingWand
-                      , Graphics.ImageMagick.MagickWand.FFI.MagickWand
-                      , Graphics.ImageMagick.MagickWand.FFI.PixelIterator
-                      , Graphics.ImageMagick.MagickWand.FFI.PixelWand
-                      , Graphics.ImageMagick.MagickWand.FFI.Types
-                      , Graphics.ImageMagick.MagickWand.FFI.WandImage
-                      , Graphics.ImageMagick.MagickWand.FFI.WandProperties
-  build-depends:       base >=4.9 && <5.0
-                      , resourcet >= 0.3 && <1.3
-                      , transformers >= 0.3 && < 0.6
-                      , vector >= 0.9 && < 0.13
-                      , bytestring >= 0.9 && <0.12
-                      , text >= 0.11 && <1.3
-                      , filepath >= 1.0 && < 2.0
-  extensions:         EmptyDataDecls
-  Ghc-options:        -Wall
-  if os(darwin)
-        cpp-options:  -DCABAL_OS_DARWIN
-  if os(windows)
-        cpp-options:  -DCABAL_OS_WINDOWS
-  pkgconfig-depends:  ImageMagick, MagickWand >= 6.7
-  Build-tools:        hsc2hs
-
-executable            resize
-  If flag(buildExamples)
-    Buildable:        True
-    build-depends:      base >= 4.9 && <5.0
-                      , resourcet
-                      , transformers
-                      , vector
-                      , bytestring
-                      , text
-                      , filepath
-                      , imagemagick
-  Else
-    Buildable:        False
-  Main-is:            examples/resize.hs
-  extensions:         EmptyDataDecls
-  Ghc-options:        -Wall
-  pkgconfig-depends:  ImageMagick, MagickWand
-
-
-executable            extent
-  If flag(buildExamples)
-    Buildable:        True
-    build-depends:      base >= 4.9 && <5.0
-                      , resourcet
-                      , transformers
-                      , vector
-                      , bytestring
-                      , text
-                      , filepath
-                      , imagemagick
-  Else
-    Buildable:        False
-  Main-is:            examples/extent.hs
-  extensions:         EmptyDataDecls
-  Ghc-options:        -Wall
-  pkgconfig-depends:  ImageMagick, MagickWand
-
-
-executable            floodfill
-  If flag(buildExamples)
-    Buildable:        True
-    build-depends:      base >= 4.9 && <5.0
-                      , resourcet
-                      , transformers
-                      , vector
-                      , bytestring
-                      , text
-                      , filepath
-                      , imagemagick
-  Else
-    Buildable:        False
-  Main-is:            examples/floodfill.hs
-  extensions:         EmptyDataDecls
-  Ghc-options:        -Wall
-  pkgconfig-depends:  ImageMagick, MagickWand
-
-
-executable            cyclops
-  Main-is:            examples/cyclops.hs
-  If flag(buildExamples)
-    Buildable:        True
-    build-depends:      base >= 4.9 && <5.0
-                      , resourcet
-                      , transformers
-                      , vector
-                      , bytestring
-                      , text
-                      , filepath
-                      , imagemagick
-  Else
-    Buildable:        False
-  extensions:         EmptyDataDecls
-  Ghc-options:        -Wall
-  pkgconfig-depends:  ImageMagick, MagickWand
-
-
-executable            clipmask
-  Main-is:            examples/clipmask.hs
-  If flag(buildExamples)
-    Buildable:        True
-    build-depends:      base >= 4.9 && <5.0
-                      , resourcet
-                      , transformers
-                      , vector
-                      , bytestring
-                      , text
-                      , filepath
-                      , imagemagick
-  Else
-    Buildable:        False
-  extensions:         EmptyDataDecls
-  Ghc-options:        -Wall
-  pkgconfig-depends:  ImageMagick, MagickWand
-
-
-executable            paint-trans
-  If flag(buildExamples)
-    Buildable:        True
-    build-depends:      base >= 4.9 && <5.0
-                      , resourcet
-                      , transformers
-                      , vector
-                      , bytestring
-                      , text
-                      , filepath
-                      , imagemagick
-  Else
-    Buildable:        False
-  Main-is:            examples/trans_paint.hs
-  extensions:         EmptyDataDecls
-  Ghc-options:        -Wall
-  pkgconfig-depends:  ImageMagick, MagickWand
-
-
-executable            round-mask
-  Main-is:            examples/round_mask.hs
-  If flag(buildExamples)
-    Buildable:        True
-    build-depends:      base >= 4.9 && <5.0
-                      , resourcet
-                      , transformers
-                      , vector
-                      , bytestring
-                      , text
-                      , filepath
-                      , imagemagick
-  Else
-    Buildable:        False
-  extensions:         EmptyDataDecls
-  Ghc-options:        -Wall
-  pkgconfig-depends:  ImageMagick, MagickWand
-
-
-executable            make-tile
-  Main-is:            examples/make_tile.hs
-  If flag(buildExamples)
-    Buildable:        True
-    build-depends:      base >= 4.9 && <5.0
-                      , resourcet
-                      , transformers
-                      , vector
-                      , bytestring
-                      , text
-                      , filepath
-                      , imagemagick
-  Else
-    Buildable:        False
-  extensions:         EmptyDataDecls
-  Ghc-options:        -Wall
-  pkgconfig-depends:  ImageMagick, MagickWand
-
-executable            draw-shapes
-  Main-is:            examples/draw_shapes.hs
-  If flag(buildExamples)
-    Buildable:        True
-    build-depends:      base >= 4.9 && <5.0
-                      , resourcet
-                      , transformers
-                      , vector
-                      , bytestring
-                      , text
-                      , filepath
-                      , imagemagick
-  Else
-    Buildable:        False
-  extensions:         EmptyDataDecls
-  Ghc-options:        -Wall
-  pkgconfig-depends:  ImageMagick, MagickWand
-
-
-executable            text-effects
-  Main-is:            examples/text_effects.hs
-  If flag(buildExamples)
-    Buildable:        True
-    build-depends:      base >= 4.9 && <5.0
-                      , resourcet
-                      , transformers
-                      , vector
-                      , bytestring
-                      , text
-                      , filepath
-                      , imagemagick
-  Else
-    Buildable:        False
-  extensions:         EmptyDataDecls
-  Ghc-options:        -Wall
-  pkgconfig-depends:  ImageMagick, MagickWand
-
-
-executable            gel
-  Main-is:            examples/gel.hs
-  If flag(buildExamples)
-    Buildable:        True
-    build-depends:      base >= 4.9 && <5.0
-                      , resourcet
-                      , transformers
-                      , vector
-                      , bytestring
-                      , text
-                      , filepath
-                      , lifted-base
-                      , imagemagick
-  Else
-    Buildable:        False
-  extensions:         EmptyDataDecls
-  Ghc-options:        -Wall
-  pkgconfig-depends:  ImageMagick, MagickWand
-
-executable            reflect
-  Main-is:            examples/reflect.hs
-  If flag(buildExamples)
-    Buildable:        True
-    build-depends:      base >= 4.9 && <5.0
-                      , resourcet
-                      , transformers
-                      , vector
-                      , bytestring
-                      , text
-                      , filepath
-                      , imagemagick
-  Else
-    Buildable:        False
-  extensions:         EmptyDataDecls
-  Ghc-options:        -Wall
-  pkgconfig-depends:  ImageMagick, MagickWand
-
-
-executable            3dlogo
-  Main-is:            examples/3dlogo.hs
-  If flag(buildExamples)
-    Buildable:        True
-    build-depends:      base >= 4.9 && <5.0
-                      , resourcet
-                      , transformers
-                      , vector
-                      , bytestring
-                      , text
-                      , filepath
-                      , imagemagick
-  Else
-    Buildable:        False
-  extensions:         EmptyDataDecls
-  Ghc-options:        -Wall
-  pkgconfig-depends:  ImageMagick, MagickWand
-
-
-executable            affine
-  Main-is:            examples/affine.hs
-  If flag(buildExamples)
-    Buildable:        True
-    build-depends:      base >= 4.9 && <5.0
-                      , resourcet
-                      , transformers
-                      , vector
-                      , bytestring
-                      , text
-                      , filepath
-                      , imagemagick
-  Else
-    Buildable:        False
-  extensions:         EmptyDataDecls
-  Ghc-options:        -Wall
-  pkgconfig-depends:  ImageMagick, MagickWand
-
-
-executable            grayscale
-  Main-is:            examples/grayscale.hs
-  If flag(buildExamples)
-    Buildable:        True
-    build-depends:      base >= 4.9 && <5.0
-                      , resourcet
-                      , transformers
-                      , vector
-                      , bytestring
-                      , text
-                      , filepath
-                      , imagemagick
-  Else
-    Buildable:        False
-  extensions:         EmptyDataDecls
-  Ghc-options:        -Wall
-  pkgconfig-depends:  ImageMagick, MagickWand
-
-
-executable            modulate
-  Main-is:            examples/modulate.hs
-  If flag(buildExamples)
-    Buildable:        True
-    build-depends:      base >= 4.9 && <5.0
-                      , resourcet
-                      , transformers
-                      , vector
-                      , bytestring
-                      , text
-                      , filepath
-                      , imagemagick
-  Else
-    Buildable:        False
-  extensions:         EmptyDataDecls
-  Ghc-options:        -Wall
-  pkgconfig-depends:  ImageMagick, MagickWand
-  Buildable:          False
-
-
-executable            landscape3d
-  Main-is:            examples/landscape_3d.hs
-  If flag(buildExamples)
-    Buildable:        True
-    build-depends:      base >= 4.9 && <5.0
-                      , resourcet
-                      , transformers
-                      , vector
-                      , bytestring 
-                      , text
-                      , filepath
-                      , imagemagick
-  Else
-    Buildable:        False
-  extensions:         EmptyDataDecls
-  Ghc-options:        -Wall
-  pkgconfig-depends:  ImageMagick, MagickWand
-
-
-executable            tilt-shift
-  Main-is:            examples/tilt_shift.hs
-  If flag(buildExamples)
-    Buildable:        True
-    build-depends:      base >= 4.9 && <5.0
-                      , resourcet
-                      , transformers
-                      , vector
-                      , bytestring
-                      , text
-                      , filepath
-                      , imagemagick
-  Else
-    Buildable:        False
-  extensions:         EmptyDataDecls
-  Ghc-options:        -Wall
-  pkgconfig-depends:  ImageMagick, MagickWand
-
-
-executable            bunny
-  Main-is:            examples/bunny.hs
-  If flag(buildExamples)
-    Buildable:        True
-    build-depends:      base >= 4.9 && <5.0
-                      , resourcet
-                      , transformers
-                      , vector
-                      , bytestring
-                      , text
-                      , filepath
-                      , imagemagick
-  Else
-    Buildable:        False
-  extensions:         EmptyDataDecls
-  Ghc-options:        -Wall
-  pkgconfig-depends:  ImageMagick, MagickWand
-
-
-executable            pixel-mod
-  Main-is:            examples/pixel_mod.hs
-  If flag(buildExamples)
-    Buildable:        True
-    build-depends:      base >= 4.9 && <5.0
-                      , resourcet
-                      , transformers
-                      , vector
-                      , bytestring
-                      , text
-                      , filepath
-                      , imagemagick
-  Else
-    Buildable:        False
-  extensions:         EmptyDataDecls
-  Ghc-options:        -Wall
-  pkgconfig-depends:  ImageMagick, MagickWand
-
-
-executable            wandtest
-  Main-is:            examples/wandtest.hs
-  If flag(buildExamples)
-    Buildable:        True
-    build-depends:      base >= 4.9 && <5.0
-                      , resourcet
-                      , transformers
-                      , vector
-                      , bytestring
-                      , text
-                      , filepath
-                      , imagemagick
-  Else
-    Buildable:        False
-  extensions:         EmptyDataDecls
-  Ghc-options:        -Wall
-  pkgconfig-depends:  ImageMagick, MagickWand
-
-
-test-suite           image-tests
-  type:              exitcode-stdio-1.0
-  main-is:           test/ImageTest.hs
-  build-depends:       base >= 4.9 && <5.0
-                     , lifted-base
-                     , directory
-                     , resourcet
-                     , exceptions
-                     , transformers
-                     , vector
-                     , bytestring
-                     , text
-                     , filepath
-                     , imagemagick
-                     , QuickCheck >= 2
-                     , tasty
-                     , tasty-hunit
-  Ghc-options:       -Wall
-  extensions:        EmptyDataDecls
-  pkgconfig-depends: ImageMagick, MagickWand
-
+name:                imagemagick
+version:             0.0.6.0
+synopsis:            bindings to imagemagick library
+description:         Basic image magick bindings.
+category:            Graphics
+author:              Alexander Vershilov,
+                     Kirill Zaborsky
+maintainer:          alexander.vershilov@gmail.com
+license:             MIT
+license-file:        LICENSE
+build-type:          Simple
+extra-source-files:
+    data/beach.jpg
+    data/mona-lisa.jpg
+    data/sasha.jpg
+    data/croptest.png
+    data/marked.png
+    data/resettest.png
+    data/trimtest.png
+    data/watermark.png
+    data/newtons-cradle.gif
+    data/rotatetest.gif
+    data/google.ico
 
 source-repository head
-  type:     git
+  type: git
   location: git://github.com/naglalakk/imagemagick.git
+
+flag buildexamples
+  description: Build examples
+  manual: False
+  default: False
+
+library
+  exposed-modules:
+      Graphics.ImageMagick.MagickCore
+      Graphics.ImageMagick.MagickCore.FFI.Gem
+      Graphics.ImageMagick.MagickCore.FFI.Log
+      Graphics.ImageMagick.MagickCore.FFI.Mime
+      Graphics.ImageMagick.MagickCore.FFI.Option
+      Graphics.ImageMagick.MagickCore.FFI.Quantize
+      Graphics.ImageMagick.MagickCore.Types.FFI.CacheView
+      Graphics.ImageMagick.MagickCore.Types.FFI.Composite
+      Graphics.ImageMagick.MagickCore.Types.FFI.Compress
+      Graphics.ImageMagick.MagickCore.Types.FFI.Constitute
+      Graphics.ImageMagick.MagickCore.Types.FFI.Distort
+      Graphics.ImageMagick.MagickCore.Types.FFI.DitherMethod
+      Graphics.ImageMagick.MagickCore.Types.FFI.Exception
+      Graphics.ImageMagick.MagickCore.Types.FFI.Fx
+      Graphics.ImageMagick.MagickCore.Types.FFI.Geometry
+      Graphics.ImageMagick.MagickCore.Types.FFI.Image
+      Graphics.ImageMagick.MagickCore.Types.FFI.Layer
+      Graphics.ImageMagick.MagickCore.Types.FFI.Log
+      Graphics.ImageMagick.MagickCore.Types.FFI.PaintMethod
+      Graphics.ImageMagick.MagickCore.Types.FFI.PixelPacket
+      Graphics.ImageMagick.MagickCore.Types.FFI.Quantize
+      Graphics.ImageMagick.MagickCore.Types.FFI.Statistic
+      Graphics.ImageMagick.MagickCore.Types.FFI.Types
+      Graphics.ImageMagick.MagickCore.Types.FFI.ChannelType
+      Graphics.ImageMagick.MagickCore.Types.FFI.MagickFunction
+      Graphics.ImageMagick.MagickCore.Types.FFI.FilterTypes
+      Graphics.ImageMagick.MagickCore.Types.FFI.AlphaChannelType
+      Graphics.ImageMagick.MagickCore.Types.FFI.ColorspaceType
+      Graphics.ImageMagick.MagickCore.Types.MBits
+      Graphics.ImageMagick.MagickCore.Types
+      Graphics.ImageMagick.MagickCore.Option
+      Graphics.ImageMagick.MagickCore.Mime
+      Graphics.ImageMagick.MagickCore.Exception
+      Graphics.ImageMagick.MagickCore.Gem
+      Graphics.ImageMagick.MagickCore.Quantize
+      Graphics.ImageMagick.MagickWand
+      Graphics.ImageMagick.MagickWand.WandImage
+      Graphics.ImageMagick.MagickWand.Types
+      Graphics.ImageMagick.MagickWand.PixelWand
+      Graphics.ImageMagick.MagickWand.PixelPacket
+      Graphics.ImageMagick.MagickWand.PixelIterator
+      Graphics.ImageMagick.MagickWand.MagickWand
+      Graphics.ImageMagick.MagickWand.DrawingWand
+      Graphics.ImageMagick.MagickWand.Utils
+      Graphics.ImageMagick.MagickWand.FFI.ImageDrawing
+      Graphics.ImageMagick.MagickWand.FFI.DrawingWand
+      Graphics.ImageMagick.MagickWand.FFI.MagickWand
+      Graphics.ImageMagick.MagickWand.FFI.PixelIterator
+      Graphics.ImageMagick.MagickWand.FFI.PixelWand
+      Graphics.ImageMagick.MagickWand.FFI.Types
+      Graphics.ImageMagick.MagickWand.FFI.WandImage
+      Graphics.ImageMagick.MagickWand.FFI.WandProperties
+  other-modules:
+      Paths_imagemagick
+  hs-source-dirs:
+      src
+  ghc-options: -Wall
+  build-depends:
+      base >=4.9 && <5.0
+    , bytestring >=0.9 && <0.12
+    , filepath >=1.0 && <2.0
+    , resourcet >=0.3 && <1.3
+    , text >=0.11 && <1.3
+    , transformers >=0.3 && <0.6
+    , vector >=0.9 && <0.13
+  if os(osx)
+    cpp-options: -DCABAL_OS_DARWIN
+  if os(windows)
+    cpp-options: -DCABAL_OS_WINDOWS
+  default-language: Haskell2010
+
+executable 3dlogo
+  main-is: examples/3dlogo.hs
+  other-modules:
+      Paths_imagemagick
+  ghc-options: -Wall
+  if flag(buildexamples)
+    build-depends:
+        base >=4.9 && <5.0
+      , bytestring
+      , filepath
+      , imagemagick
+      , resourcet
+      , text
+      , transformers
+      , vector
+  else
+    buildable: False
+  default-language: Haskell2010
+
+executable affine
+  main-is: examples/affine.hs
+  other-modules:
+      Paths_imagemagick
+  ghc-options: -Wall
+  if flag(buildexamples)
+    build-depends:
+        base >=4.9 && <5.0
+      , bytestring
+      , filepath
+      , imagemagick
+      , resourcet
+      , text
+      , transformers
+      , vector
+  else
+    buildable: False
+  default-language: Haskell2010
+
+executable bunny
+  main-is: examples/bunny.hs
+  other-modules:
+      Paths_imagemagick
+  ghc-options: -Wall
+  if flag(buildexamples)
+    build-depends:
+        base >=4.9 && <5.0
+      , bytestring
+      , filepath
+      , imagemagick
+      , resourcet
+      , text
+      , transformers
+      , vector
+  else
+    buildable: False
+  default-language: Haskell2010
+
+executable clipmask
+  main-is: examples/clipmask.hs
+  other-modules:
+      Paths_imagemagick
+  ghc-options: -Wall
+  if flag(buildexamples)
+    build-depends:
+        base >=4.9 && <5.0
+      , bytestring
+      , filepath
+      , imagemagick
+      , resourcet
+      , text
+      , transformers
+      , vector
+  else
+    buildable: False
+  default-language: Haskell2010
+
+executable cyclops
+  main-is: examples/cyclops.hs
+  other-modules:
+      Paths_imagemagick
+  ghc-options: -Wall
+  if flag(buildexamples)
+    build-depends:
+        base >=4.9 && <5.0
+      , bytestring
+      , filepath
+      , imagemagick
+      , resourcet
+      , text
+      , transformers
+      , vector
+  else
+    buildable: False
+  default-language: Haskell2010
+
+executable draw-shapes
+  main-is: examples/draw_shapes.hs
+  other-modules:
+      Paths_imagemagick
+  ghc-options: -Wall
+  if flag(buildexamples)
+    build-depends:
+        base >=4.9 && <5.0
+      , bytestring
+      , filepath
+      , imagemagick
+      , resourcet
+      , text
+      , transformers
+      , vector
+  else
+    buildable: False
+  default-language: Haskell2010
+
+executable extent
+  main-is: examples/extent.hs
+  other-modules:
+      Paths_imagemagick
+  ghc-options: -Wall
+  if flag(buildexamples)
+    build-depends:
+        base >=4.9 && <5.0
+      , bytestring
+      , filepath
+      , imagemagick
+      , resourcet
+      , text
+      , transformers
+      , vector
+  else
+    buildable: False
+  default-language: Haskell2010
+
+executable floodfill
+  main-is: examples/floodfill.hs
+  other-modules:
+      Paths_imagemagick
+  ghc-options: -Wall
+  if flag(buildexamples)
+    build-depends:
+        base >=4.9 && <5.0
+      , bytestring
+      , filepath
+      , imagemagick
+      , resourcet
+      , text
+      , transformers
+      , vector
+  else
+    buildable: False
+  default-language: Haskell2010
+
+executable gel
+  main-is: examples/gel.hs
+  other-modules:
+      Paths_imagemagick
+  ghc-options: -Wall
+  if flag(buildexamples)
+    build-depends:
+        base >=4.9 && <5.0
+      , bytestring
+      , filepath
+      , imagemagick
+      , lifted-base
+      , resourcet
+      , text
+      , transformers
+      , vector
+  else
+    buildable: False
+  default-language: Haskell2010
+
+executable grayscale
+  main-is: examples/grayscale.hs
+  other-modules:
+      Paths_imagemagick
+  ghc-options: -Wall
+  if flag(buildexamples)
+    build-depends:
+        base >=4.9 && <5.0
+      , bytestring
+      , filepath
+      , imagemagick
+      , resourcet
+      , text
+      , transformers
+      , vector
+  else
+    buildable: False
+  default-language: Haskell2010
+
+executable landscape3d
+  main-is: examples/landscape_3d.hs
+  other-modules:
+      Paths_imagemagick
+  ghc-options: -Wall
+  if flag(buildexamples)
+    build-depends:
+        base >=4.9 && <5.0
+      , bytestring
+      , filepath
+      , imagemagick
+      , resourcet
+      , text
+      , transformers
+      , vector
+  else
+    buildable: False
+  default-language: Haskell2010
+
+executable make-tile
+  main-is: examples/make_tile.hs
+  other-modules:
+      Paths_imagemagick
+  ghc-options: -Wall
+  if flag(buildexamples)
+    build-depends:
+        base >=4.9 && <5.0
+      , bytestring
+      , filepath
+      , imagemagick
+      , resourcet
+      , text
+      , transformers
+      , vector
+  else
+    buildable: False
+  default-language: Haskell2010
+
+executable modulate
+  main-is: examples/modulate.hs
+  other-modules:
+      Paths_imagemagick
+  ghc-options: -Wall
+  buildable: False
+  if flag(buildexamples)
+    build-depends:
+        base >=4.9 && <5.0
+      , bytestring
+      , filepath
+      , imagemagick
+      , resourcet
+      , text
+      , transformers
+      , vector
+    buildable: True
+  default-language: Haskell2010
+
+executable paint-trans
+  main-is: examples/trans_paint.hs
+  other-modules:
+      Paths_imagemagick
+  ghc-options: -Wall
+  if flag(buildexamples)
+    build-depends:
+        base >=4.9 && <5.0
+      , bytestring
+      , filepath
+      , imagemagick
+      , resourcet
+      , text
+      , transformers
+      , vector
+  else
+    buildable: False
+  default-language: Haskell2010
+
+executable pixel-mod
+  main-is: examples/pixel_mod.hs
+  other-modules:
+      Paths_imagemagick
+  ghc-options: -Wall
+  if flag(buildexamples)
+    build-depends:
+        base >=4.9 && <5.0
+      , bytestring
+      , filepath
+      , imagemagick
+      , resourcet
+      , text
+      , transformers
+      , vector
+  else
+    buildable: False
+  default-language: Haskell2010
+
+executable reflect
+  main-is: examples/reflect.hs
+  other-modules:
+      Paths_imagemagick
+  ghc-options: -Wall
+  if flag(buildexamples)
+    build-depends:
+        base >=4.9 && <5.0
+      , bytestring
+      , filepath
+      , imagemagick
+      , resourcet
+      , text
+      , transformers
+      , vector
+  else
+    buildable: False
+  default-language: Haskell2010
+
+executable resize
+  main-is: examples/resize.hs
+  other-modules:
+      Paths_imagemagick
+  ghc-options: -Wall
+  if flag(buildexamples)
+    build-depends:
+        base >=4.9 && <5.0
+      , bytestring
+      , filepath
+      , imagemagick
+      , resourcet
+      , text
+      , transformers
+      , vector
+  else
+    buildable: False
+  default-language: Haskell2010
+
+executable round-mask
+  main-is: examples/round_mask.hs
+  other-modules:
+      Paths_imagemagick
+  ghc-options: -Wall
+  if flag(buildexamples)
+    build-depends:
+        base >=4.9 && <5.0
+      , bytestring
+      , filepath
+      , imagemagick
+      , resourcet
+      , text
+      , transformers
+      , vector
+  else
+    buildable: False
+  default-language: Haskell2010
+
+executable text-effects
+  main-is: examples/text_effects.hs
+  other-modules:
+      Paths_imagemagick
+  ghc-options: -Wall
+  if flag(buildexamples)
+    build-depends:
+        base >=4.9 && <5.0
+      , bytestring
+      , filepath
+      , imagemagick
+      , resourcet
+      , text
+      , transformers
+      , vector
+  else
+    buildable: False
+  default-language: Haskell2010
+
+executable tilt-shift
+  main-is: examples/tilt_shift.hs
+  other-modules:
+      Paths_imagemagick
+  ghc-options: -Wall
+  if flag(buildexamples)
+    build-depends:
+        base >=4.9 && <5.0
+      , bytestring
+      , filepath
+      , imagemagick
+      , resourcet
+      , text
+      , transformers
+      , vector
+  else
+    buildable: False
+  default-language: Haskell2010
+
+executable wandtest
+  main-is: examples/wandtest.hs
+  other-modules:
+      Paths_imagemagick
+  ghc-options: -Wall
+  if flag(buildexamples)
+    build-depends:
+        base >=4.9 && <5.0
+      , bytestring
+      , filepath
+      , imagemagick
+      , resourcet
+      , text
+      , transformers
+      , vector
+  else
+    buildable: False
+  default-language: Haskell2010
+
+test-suite image-tests
+  type: exitcode-stdio-1.0
+  main-is: test/ImageTest.hs
+  other-modules:
+      Paths_imagemagick
+  ghc-options: -Wall
+  build-depends:
+      QuickCheck >=2
+    , base >=4.9 && <5.0
+    , bytestring
+    , directory
+    , exceptions
+    , filepath
+    , imagemagick
+    , lifted-base
+    , resourcet
+    , tasty
+    , tasty-hunit
+    , text
+    , transformers
+    , vector
+  default-language: Haskell2010

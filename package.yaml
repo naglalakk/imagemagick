@@ -1,0 +1,467 @@
+name: imagemagick
+version: '0.0.6.0'
+synopsis: bindings to imagemagick library
+description: Basic image magick bindings.
+category: Graphics
+author:
+- Alexander Vershilov
+- Kirill Zaborsky
+maintainer: alexander.vershilov@gmail.com
+license: MIT
+git: git://github.com/naglalakk/imagemagick.git
+extra-source-files:
+- data/*.jpg
+- data/*.png
+- data/*.gif
+- data/*.ico
+library:
+  source-dirs: src
+  ghc-options: -Wall
+  exposed-modules:
+  - Graphics.ImageMagick.MagickCore
+  - Graphics.ImageMagick.MagickCore.FFI.Gem
+  - Graphics.ImageMagick.MagickCore.FFI.Log
+  - Graphics.ImageMagick.MagickCore.FFI.Mime
+  - Graphics.ImageMagick.MagickCore.FFI.Option
+  - Graphics.ImageMagick.MagickCore.FFI.Quantize
+  - Graphics.ImageMagick.MagickCore.Types.FFI.CacheView
+  - Graphics.ImageMagick.MagickCore.Types.FFI.Composite
+  - Graphics.ImageMagick.MagickCore.Types.FFI.Compress
+  - Graphics.ImageMagick.MagickCore.Types.FFI.Constitute
+  - Graphics.ImageMagick.MagickCore.Types.FFI.Distort
+  - Graphics.ImageMagick.MagickCore.Types.FFI.DitherMethod
+  - Graphics.ImageMagick.MagickCore.Types.FFI.Exception
+  - Graphics.ImageMagick.MagickCore.Types.FFI.Fx
+  - Graphics.ImageMagick.MagickCore.Types.FFI.Geometry
+  - Graphics.ImageMagick.MagickCore.Types.FFI.Image
+  - Graphics.ImageMagick.MagickCore.Types.FFI.Layer
+  - Graphics.ImageMagick.MagickCore.Types.FFI.Log
+  - Graphics.ImageMagick.MagickCore.Types.FFI.PaintMethod
+  - Graphics.ImageMagick.MagickCore.Types.FFI.PixelPacket
+  - Graphics.ImageMagick.MagickCore.Types.FFI.Quantize
+  - Graphics.ImageMagick.MagickCore.Types.FFI.Statistic
+  - Graphics.ImageMagick.MagickCore.Types.FFI.Types
+  - Graphics.ImageMagick.MagickCore.Types.FFI.ChannelType
+  - Graphics.ImageMagick.MagickCore.Types.FFI.MagickFunction
+  - Graphics.ImageMagick.MagickCore.Types.FFI.FilterTypes
+  - Graphics.ImageMagick.MagickCore.Types.FFI.AlphaChannelType
+  - Graphics.ImageMagick.MagickCore.Types.FFI.ColorspaceType
+  - Graphics.ImageMagick.MagickCore.Types.MBits
+  - Graphics.ImageMagick.MagickCore.Types
+  - Graphics.ImageMagick.MagickCore.Option
+  - Graphics.ImageMagick.MagickCore.Mime
+  - Graphics.ImageMagick.MagickCore.Exception
+  - Graphics.ImageMagick.MagickCore.Gem
+  - Graphics.ImageMagick.MagickCore.Quantize
+  - Graphics.ImageMagick.MagickWand
+  - Graphics.ImageMagick.MagickWand.WandImage
+  - Graphics.ImageMagick.MagickWand.Types
+  - Graphics.ImageMagick.MagickWand.PixelWand
+  - Graphics.ImageMagick.MagickWand.PixelPacket
+  - Graphics.ImageMagick.MagickWand.PixelIterator
+  - Graphics.ImageMagick.MagickWand.MagickWand
+  - Graphics.ImageMagick.MagickWand.DrawingWand
+  - Graphics.ImageMagick.MagickWand.Utils
+  - Graphics.ImageMagick.MagickWand.FFI.ImageDrawing
+  - Graphics.ImageMagick.MagickWand.FFI.DrawingWand
+  - Graphics.ImageMagick.MagickWand.FFI.MagickWand
+  - Graphics.ImageMagick.MagickWand.FFI.PixelIterator
+  - Graphics.ImageMagick.MagickWand.FFI.PixelWand
+  - Graphics.ImageMagick.MagickWand.FFI.Types
+  - Graphics.ImageMagick.MagickWand.FFI.WandImage
+  - Graphics.ImageMagick.MagickWand.FFI.WandProperties
+  dependencies:
+  - base >=4.9 && <5.0
+  - resourcet >=0.3 && <1.3
+  - transformers >=0.3 && <0.6
+  - vector >=0.9 && <0.13
+  - bytestring >=0.9 && <0.12
+  - text >=0.11 && <1.3
+  - filepath >=1.0 && <2.0
+  when:
+  - condition: os(osx)
+    cpp-options: -DCABAL_OS_DARWIN
+  - condition: os(windows)
+    cpp-options: -DCABAL_OS_WINDOWS
+executables:
+  landscape3d:
+    main: examples/landscape_3d.hs
+    ghc-options: -Wall
+    when:
+    - condition: flag(buildexamples)
+      then:
+        dependencies:
+        - base >=4.9 && <5.0
+        - resourcet
+        - transformers
+        - vector
+        - bytestring
+        - text
+        - filepath
+        - imagemagick
+      else:
+        buildable: false
+  3dlogo:
+    main: examples/3dlogo.hs
+    ghc-options: -Wall
+    when:
+    - condition: flag(buildexamples)
+      then:
+        dependencies:
+        - base >=4.9 && <5.0
+        - resourcet
+        - transformers
+        - vector
+        - bytestring
+        - text
+        - filepath
+        - imagemagick
+      else:
+        buildable: false
+  modulate:
+    main: examples/modulate.hs
+    ghc-options: -Wall
+    buildable: false
+    when:
+    - condition: flag(buildexamples)
+      dependencies:
+      - base >=4.9 && <5.0
+      - resourcet
+      - transformers
+      - vector
+      - bytestring
+      - text
+      - filepath
+      - imagemagick
+      buildable: true
+  resize:
+    main: examples/resize.hs
+    ghc-options: -Wall
+    when:
+    - condition: flag(buildexamples)
+      then:
+        dependencies:
+        - base >=4.9 && <5.0
+        - resourcet
+        - transformers
+        - vector
+        - bytestring
+        - text
+        - filepath
+        - imagemagick
+      else:
+        buildable: false
+  wandtest:
+    main: examples/wandtest.hs
+    ghc-options: -Wall
+    when:
+    - condition: flag(buildexamples)
+      then:
+        dependencies:
+        - base >=4.9 && <5.0
+        - resourcet
+        - transformers
+        - vector
+        - bytestring
+        - text
+        - filepath
+        - imagemagick
+      else:
+        buildable: false
+  tilt-shift:
+    main: examples/tilt_shift.hs
+    ghc-options: -Wall
+    when:
+    - condition: flag(buildexamples)
+      then:
+        dependencies:
+        - base >=4.9 && <5.0
+        - resourcet
+        - transformers
+        - vector
+        - bytestring
+        - text
+        - filepath
+        - imagemagick
+      else:
+        buildable: false
+  affine:
+    main: examples/affine.hs
+    ghc-options: -Wall
+    when:
+    - condition: flag(buildexamples)
+      then:
+        dependencies:
+        - base >=4.9 && <5.0
+        - resourcet
+        - transformers
+        - vector
+        - bytestring
+        - text
+        - filepath
+        - imagemagick
+      else:
+        buildable: false
+  make-tile:
+    main: examples/make_tile.hs
+    ghc-options: -Wall
+    when:
+    - condition: flag(buildexamples)
+      then:
+        dependencies:
+        - base >=4.9 && <5.0
+        - resourcet
+        - transformers
+        - vector
+        - bytestring
+        - text
+        - filepath
+        - imagemagick
+      else:
+        buildable: false
+  extent:
+    main: examples/extent.hs
+    ghc-options: -Wall
+    when:
+    - condition: flag(buildexamples)
+      then:
+        dependencies:
+        - base >=4.9 && <5.0
+        - resourcet
+        - transformers
+        - vector
+        - bytestring
+        - text
+        - filepath
+        - imagemagick
+      else:
+        buildable: false
+  cyclops:
+    main: examples/cyclops.hs
+    ghc-options: -Wall
+    when:
+    - condition: flag(buildexamples)
+      then:
+        dependencies:
+        - base >=4.9 && <5.0
+        - resourcet
+        - transformers
+        - vector
+        - bytestring
+        - text
+        - filepath
+        - imagemagick
+      else:
+        buildable: false
+  draw-shapes:
+    main: examples/draw_shapes.hs
+    ghc-options: -Wall
+    when:
+    - condition: flag(buildexamples)
+      then:
+        dependencies:
+        - base >=4.9 && <5.0
+        - resourcet
+        - transformers
+        - vector
+        - bytestring
+        - text
+        - filepath
+        - imagemagick
+      else:
+        buildable: false
+  text-effects:
+    main: examples/text_effects.hs
+    ghc-options: -Wall
+    when:
+    - condition: flag(buildexamples)
+      then:
+        dependencies:
+        - base >=4.9 && <5.0
+        - resourcet
+        - transformers
+        - vector
+        - bytestring
+        - text
+        - filepath
+        - imagemagick
+      else:
+        buildable: false
+  reflect:
+    main: examples/reflect.hs
+    ghc-options: -Wall
+    when:
+    - condition: flag(buildexamples)
+      then:
+        dependencies:
+        - base >=4.9 && <5.0
+        - resourcet
+        - transformers
+        - vector
+        - bytestring
+        - text
+        - filepath
+        - imagemagick
+      else:
+        buildable: false
+  clipmask:
+    main: examples/clipmask.hs
+    ghc-options: -Wall
+    when:
+    - condition: flag(buildexamples)
+      then:
+        dependencies:
+        - base >=4.9 && <5.0
+        - resourcet
+        - transformers
+        - vector
+        - bytestring
+        - text
+        - filepath
+        - imagemagick
+      else:
+        buildable: false
+  paint-trans:
+    main: examples/trans_paint.hs
+    ghc-options: -Wall
+    when:
+    - condition: flag(buildexamples)
+      then:
+        dependencies:
+        - base >=4.9 && <5.0
+        - resourcet
+        - transformers
+        - vector
+        - bytestring
+        - text
+        - filepath
+        - imagemagick
+      else:
+        buildable: false
+  grayscale:
+    main: examples/grayscale.hs
+    ghc-options: -Wall
+    when:
+    - condition: flag(buildexamples)
+      then:
+        dependencies:
+        - base >=4.9 && <5.0
+        - resourcet
+        - transformers
+        - vector
+        - bytestring
+        - text
+        - filepath
+        - imagemagick
+      else:
+        buildable: false
+  pixel-mod:
+    main: examples/pixel_mod.hs
+    ghc-options: -Wall
+    when:
+    - condition: flag(buildexamples)
+      then:
+        dependencies:
+        - base >=4.9 && <5.0
+        - resourcet
+        - transformers
+        - vector
+        - bytestring
+        - text
+        - filepath
+        - imagemagick
+      else:
+        buildable: false
+  round-mask:
+    main: examples/round_mask.hs
+    ghc-options: -Wall
+    when:
+    - condition: flag(buildexamples)
+      then:
+        dependencies:
+        - base >=4.9 && <5.0
+        - resourcet
+        - transformers
+        - vector
+        - bytestring
+        - text
+        - filepath
+        - imagemagick
+      else:
+        buildable: false
+  gel:
+    main: examples/gel.hs
+    ghc-options: -Wall
+    when:
+    - condition: flag(buildexamples)
+      then:
+        dependencies:
+        - base >=4.9 && <5.0
+        - resourcet
+        - transformers
+        - vector
+        - bytestring
+        - text
+        - filepath
+        - lifted-base
+        - imagemagick
+      else:
+        buildable: false
+  bunny:
+    main: examples/bunny.hs
+    ghc-options: -Wall
+    when:
+    - condition: flag(buildexamples)
+      then:
+        dependencies:
+        - base >=4.9 && <5.0
+        - resourcet
+        - transformers
+        - vector
+        - bytestring
+        - text
+        - filepath
+        - imagemagick
+      else:
+        buildable: false
+  floodfill:
+    main: examples/floodfill.hs
+    ghc-options: -Wall
+    when:
+    - condition: flag(buildexamples)
+      then:
+        dependencies:
+        - base >=4.9 && <5.0
+        - resourcet
+        - transformers
+        - vector
+        - bytestring
+        - text
+        - filepath
+        - imagemagick
+      else:
+        buildable: false
+tests:
+  image-tests:
+    main: test/ImageTest.hs
+    ghc-options: -Wall
+    dependencies:
+    - base >=4.9 && <5.0
+    - lifted-base
+    - directory
+    - resourcet
+    - exceptions
+    - transformers
+    - vector
+    - bytestring
+    - text
+    - filepath
+    - imagemagick
+    - QuickCheck >=2
+    - tasty
+    - tasty-hunit
+flags:
+  buildexamples:
+    description: Build examples
+    manual: false
+    default: false
