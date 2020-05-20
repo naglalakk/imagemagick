@@ -1,5 +1,5 @@
 name: imagemagick
-version: '0.0.7.1'
+version: '0.0.7.2'
 synopsis: bindings to imagemagick library
 description: Basic image magick bindings.
 category: Graphics
@@ -80,7 +80,7 @@ library:
   - filepath >=1.0 && <2.0
   pkg-config-dependencies:  
   - ImageMagick
-  - MagickWand
+  - MagickWand >= 6.7 && < 7.0
   when:
   - condition: os(osx)
     cpp-options: -DCABAL_OS_DARWIN
